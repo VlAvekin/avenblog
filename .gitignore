@@ -2,3 +2,9 @@
 
 .idea/dataSources
 .idea/inspectionProfiles
+
+*.iws
+*.iml
+*.ipr
+*.xml
+/out/
