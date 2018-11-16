@@ -5,6 +5,7 @@
 
     <div>
         <@login.logout />
+        <span><a href="/user">User List</a></span>
     </div>
 
     <div>
@@ -18,8 +19,8 @@
     </div>
 
     <!--Search-->
-    <form method="get" action="/main">
-        <input type="text" name="search">
+    <form method="get" action="/blog">
+        <input type="text" name="search" value="${search?ifExists}">
         <button type="submit">Найти</button>
     </form>
 
