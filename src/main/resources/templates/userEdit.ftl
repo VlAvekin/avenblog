@@ -9,7 +9,7 @@ User editor
     <#list roles as role>
         <div>
             <label>
-                <input type="checkbox" name="${user.role?seq_contains(role)?string("checked", "")}">
+                <input type="checkbox" name="${role}" ${user.roles?seq_contains(role)?string("checked", "")}>
                 ${role}
             </label>
         </div>
