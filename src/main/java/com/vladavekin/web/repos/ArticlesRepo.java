@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface ArticlesRepos extends CrudRepository<Articles, Integer> {
+public interface ArticlesRepo extends CrudRepository<Articles, Integer> {
 
     List<Articles> findByTheme(String theme);
 
