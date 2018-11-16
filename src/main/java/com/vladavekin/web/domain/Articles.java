@@ -20,21 +20,16 @@ public class Articles {
     public Articles() {
     }
 
-    public Articles(String theme, String briefDescriptions, User user) {
-        this.theme = theme;
-        this.briefDescriptions = briefDescriptions;
-        this.author = user;
-    }
 
-    public Articles(String theme, String briefDescriptions, String text, User user) {
+    public Articles(String theme, String briefDescriptions, String text, User author) {
         this.theme = theme;
         this.briefDescriptions = briefDescriptions;
         this.text = text;
-        this.author = user;
+        this.author = author;
     }
 
     public String getAuthorName() {
-        return author != null ? author.getUserName() : "none";
+        return author != null ? author.getUsername() : "none";
     }
 
     public void setId(Long id) {

@@ -27,10 +27,10 @@ public class RegistrationController {
     public String addUser(final User user,
                           final Map<String, Object> model) {
 
-        User userFromDb = userRepo.findByUserName(user.getUserName());
+        User userFromDb = userRepo.findByUsername(user.getUsername());
 
         if (userFromDb != null){
-            model.put("message", "User exists!");
+            model.put("articles", "User exists!");
             return "registration";
         }
 

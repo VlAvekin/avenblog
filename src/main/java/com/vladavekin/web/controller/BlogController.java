@@ -7,6 +7,7 @@ import com.vladavekin.web.repos.ArticlesRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,11 +23,19 @@ public class BlogController {
     private ArticlesRepo articlesRepo;
 
     @GetMapping("/blog")
-    public String main(Map<String, Object> model){
+    public String main(@RequestParam(required = false) String search,
+                       Model model){
 
         Iterable<Articles> articles = articlesRepo.findAll();
 
-        model.put("articles", articles);
+        if (search != null && !search.isEmpty()) {
+            articles = articlesRepo.findByTheme(search);
+        } else {
+            articles = articlesRepo.findAll();
+        }
+
+        model.addAttribute("articles", articles);
+        model.addAttribute("search", search);
 
         return "blog";
     }
@@ -47,23 +56,6 @@ public class BlogController {
         model.put("articles", articles);
 
 //      editor.direct(text)
-        return "blog";
-    }
-
-    @PostMapping("search")
-    public String search(@RequestParam String theme,
-                         Map<String, Object> model){
-
-        Iterable<Articles> articles;
-
-        if (theme != null && !theme.isEmpty()) {
-            articles = articlesRepo.findByTheme(theme);
-        } else {
-            articles = articlesRepo.findAll();
-        }
-
-        model.put("articles", articles);
-
         return "blog";
     }
 
