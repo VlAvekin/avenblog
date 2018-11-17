@@ -9,4 +9,6 @@ public interface ArticlesRepo extends CrudRepository<Articles, Integer> {
 
     List<Articles> findByTheme(String theme);
 
+    Articles findById(Long id);
+
 }

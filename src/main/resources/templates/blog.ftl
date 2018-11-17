@@ -27,12 +27,13 @@
 
     <#list articles as article>
     <div>
-        <b>${article.id}</b>
-        <span>${article.theme}</span>
-        <span>${article.briefDescriptions}</span>
-        <span>${article.text}</span>
-        <strong>${article.authorName}</strong>
-        <br>
+        <a href="/articles/${article.id}">
+            <b>${article.id}</b>
+            <span>${article.theme}</span>
+            <span>${article.briefDescriptions}</span>
+            <strong>${article.authorName}</strong>
+            <br>
+        </a>
     </div>
     <#else>
         No Articles
