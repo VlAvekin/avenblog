@@ -1,8 +1,10 @@
 package com.vladavekin.logic.controller.syntax;
 
 import com.vladavekin.logic.model.TransforAvenTextAtHTML;
+import org.springframework.beans.factory.annotation.Value;
 
 public class ImageSyntax implements TransforAvenTextAtHTML {
+
     @Override
     public String direct(String text) {
 

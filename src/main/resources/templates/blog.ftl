@@ -9,14 +9,17 @@
     </div>
 
     <div>
-        <form method="post" enctype="multipart/form-data">
+        <form method="post">
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
             <input type="text" name="theme" placeholder="Заголовок">
             <input type="text" name="briefDescriptions" placeholder="Краткое описания">
-            <input type="text" name="text" placeholder="Введите сообшения">
-            <input type="file" name="file"/>
+            <textarea name="text" placeholder="Введите сообшения"></textarea>
             <button type="submit">Добавить</button>
         </form>
+    </div>
+        <span><a href="/files">Files add</a></span>
+    <div>
+
     </div>
 
     <!--Search-->
@@ -32,13 +35,9 @@
             <b>${article.id}</b>
             <span>${article.theme}</span>
             <span>${article.briefDescriptions}</span>
+            ${article.text}
             <strong>${article.authorName}</strong>
             <br>
-        <div>
-            <#if article.filename??>
-                <img src="/img/${article.filename}">
-            </#if>
-        </div>
         </a>
     </div>
     <#else>

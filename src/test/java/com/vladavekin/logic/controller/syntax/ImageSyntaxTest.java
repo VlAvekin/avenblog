@@ -21,7 +21,7 @@ public class ImageSyntaxTest {
 
         final String actualValue =  tatah.direct(inputValue);
 
-        //System.out.println(actualValue);
+        System.out.println(actualValue);
 
         assertEquals(expectedValue, actualValue);
 

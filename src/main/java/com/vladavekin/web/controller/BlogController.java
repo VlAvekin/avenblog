@@ -25,9 +25,6 @@ public class BlogController {
 
     private Editor editor = new Editor();
 
-    @Value("${upload.path}")
-    private String uploadPath;
-
     @Autowired
     private ArticlesRepo articlesRepo;
 
@@ -55,26 +52,9 @@ public class BlogController {
             @RequestParam String theme,
             @RequestParam String briefDescriptions,
             @RequestParam String text,
-            Map<String, Object> model,
-            @RequestParam("file") MultipartFile file) throws IOException {
+            Map<String, Object> model){
 
-        Articles article = new Articles(theme, briefDescriptions, text, user);
-
-        if (file != null && !file.getOriginalFilename().isEmpty()){
-
-            File uploadDir = new File(uploadPath);
-
-            if (!uploadDir.exists()){
-                uploadDir.mkdir();
-            }
-
-            final String uuidFile = UUID.randomUUID().toString();
-            final String resultFilename = uuidFile + "." + file.getOriginalFilename();
-
-            file.transferTo(new File(uploadPath + "/" + resultFilename));
-
-            article.setFilename(resultFilename);
-        }
+        Articles article = new Articles(theme, briefDescriptions, editor.direct(text), user);
 
         articlesRepo.save(article);
 
