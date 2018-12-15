@@ -7,9 +7,11 @@
     <table>
 
         <thead>
-            <tr>Name</tr>
-            <tr>Role</tr>
-            <tr></tr>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Role</th>
+            </tr>
         </thead>
             <tbody>
             <#list users as user>
@@ -17,8 +19,8 @@
                     <td>${user.id}</td>
                     <td>${user.username}</td>
                     <td><#list user.roles as role>
-                        ${role}<#sep>,
-                    </#list></td>
+                        ${role}<#sep>, </#list>
+                    </td>
                     <td>
                         <a href="/user/${user.id}">
                             edit

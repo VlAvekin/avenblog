@@ -23,8 +23,6 @@ import java.util.UUID;
 @Controller
 public class BlogController {
 
-    private Editor editor = new Editor();
-
     @Autowired
     private ArticlesRepo articlesRepo;
 
@@ -43,26 +41,6 @@ public class BlogController {
         model.addAttribute("articles", articles);
         model.addAttribute("search", search);
 
-        return "blog";
-    }
-
-    @PostMapping("/blog")
-    public String add(
-            @AuthenticationPrincipal User user,
-            @RequestParam String theme,
-            @RequestParam String briefDescriptions,
-            @RequestParam String text,
-            Map<String, Object> model){
-
-        Articles article = new Articles(theme, briefDescriptions, editor.direct(text), user);
-
-        articlesRepo.save(article);
-
-        Iterable<Articles> articles = articlesRepo.findAll();
-
-        model.put("articles", articles);
-
-//      editor.direct(text)
         return "blog";
     }
 

@@ -16,12 +16,12 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/user")
-@PreAuthorize("hasAuthority('ADMIN')")
 public class UserController {
 
     @Autowired
     private UserRepo userRepo;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     private String userList(Model model) {
 
@@ -30,6 +30,7 @@ public class UserController {
         return "userList";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("{user}")
     private String userEditForm(@PathVariable User user,
                                 Model model){
@@ -40,6 +41,7 @@ public class UserController {
         return "userEdit";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public String userSave(@RequestParam String username,
                            @RequestParam Map<String, String> form,

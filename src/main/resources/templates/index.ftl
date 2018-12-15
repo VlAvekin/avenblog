@@ -2,7 +2,8 @@
 
 <@common.page>
 
-<div>Hello, user</div>
-<a href="/blog">Blog page</a>
+<h2>Hello, user</h2>
+<div>This is my blog</div>
+
 
 </@common.page>

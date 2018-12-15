@@ -1,47 +1,24 @@
 <#import "parts/common.ftl" as common>
 <#import "parts/login.ftl" as login>
+<#import "parts/search.ftl" as searchs>
 
 <@common.page>
 
-    <div>
-        <@login.logout />
-        <span><a href="/user">User List</a></span>
-    </div>
-
-    <div>
-        <form method="post">
-            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-            <input type="text" name="theme" placeholder="Заголовок">
-            <input type="text" name="briefDescriptions" placeholder="Краткое описания">
-            <textarea name="text" placeholder="Введите сообшения"></textarea>
-            <button type="submit">Добавить</button>
-        </form>
-    </div>
-        <span><a href="/files">Files add</a></span>
-    <div>
-
-    </div>
-
-    <!--Search-->
-    <form method="get" action="/blog">
-        <input type="text" name="search" value="${search?ifExists}">
-        <button type="submit">Найти</button>
-    </form>
-
-
     <#list articles as article>
-    <div>
+    <div class="card mb-3">
         <a href="/articles/${article.id}">
-            <b>${article.id}</b>
-            <span>${article.theme}</span>
-            <span>${article.briefDescriptions}</span>
-            ${article.text}
-            <strong>${article.authorName}</strong>
-            <br>
+            <img class="card-img-top" src="/img/${article.photo}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">${article.theme}</h5>
+
+                <p class="card-text">${article.briefDescriptions}</p>
+                <p class="card-text">${article.authorName}</p>
+            </div>
         </a>
     </div>
     <#else>
         No Articles
     </#list>
+
 
 </@common.page>

@@ -6,6 +6,6 @@ Add new user
 
 ${articles?ifExists}
 
-<@login.login "/registration" />
+<@login.login "/registration" true/>
 
 </@common.page>

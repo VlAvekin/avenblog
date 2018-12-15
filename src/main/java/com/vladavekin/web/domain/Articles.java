@@ -12,6 +12,7 @@ public class Articles {
     private String theme;
     private String briefDescriptions;
     private String text;
+    private String photo;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
@@ -28,6 +29,14 @@ public class Articles {
         this.briefDescriptions = briefDescriptions;
         this.text = text;
         this.author = author;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public String getAuthorName() {

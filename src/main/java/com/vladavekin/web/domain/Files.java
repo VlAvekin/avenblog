@@ -12,6 +12,7 @@ public class Files {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
+    private String fileId;
     private String filename;
 
     public Files() {
@@ -19,6 +20,19 @@ public class Files {
 
     public Files(String filename) {
         this.filename = filename;
+    }
+
+    public Files(String fileId, String filename) {
+        this.fileId = fileId;
+        this.filename = filename;
+    }
+
+    public String getFileId() {
+        return fileId;
+    }
+
+    public void setFileId(String fileId) {
+        this.fileId = fileId;
     }
 
     public Long getId() {
