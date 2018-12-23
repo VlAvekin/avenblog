@@ -17,6 +17,12 @@
                 <a class="nav-link" href="/blog">Blog <span class="sr-only">(current)</span></a>
             </li>
 
+            <#if user??>
+            <li class="nav-item">
+                <a class="nav-link" href="/user/profile">Profile <span class="sr-only">(current)</span></a>
+            </li>
+            </#if>
+
             <#if isAdmin>
             <li class="nav-item">
                 <a class="nav-link" href="/newArticles">New Articles<span class="sr-only">(current)</span></a>
@@ -30,7 +36,7 @@
 
         </ul>
 
-        <div class="navbar-text">${name}</div>
+        <div class="navbar-text mr-3">${name}</div>
 
         <@login.logout/>
     </div>
