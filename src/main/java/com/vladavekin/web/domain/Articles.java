@@ -1,6 +1,9 @@
 package com.vladavekin.web.domain;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Articles {
@@ -9,8 +12,16 @@ public class Articles {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
+    @NotBlank(message = "Please fill the Theme")
+    @Length(max = 255, message = "Theme top long (more then 255 chat)")
     private String theme;
+
+    @NotBlank(message = "Please fill the Brief Descriptions")
+    @Length(max = 255, message = "Brief Descriptions top long (more then 255 chat)")
     private String briefDescriptions;
+
+    @NotBlank(message = "Please fill the Articles")
+    @Length(max = 2048, message = "Articles top long (more then 2kB)")
     private String text;
     private String photo;
 

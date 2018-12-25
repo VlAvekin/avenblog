@@ -36,7 +36,13 @@
             </div>
 
             <div class="form-group col-md-3">
-                <input class="form-control" type="text" name="theme" placeholder="Заголовок">
+                <input class="form-control" type="text" name="theme" placeholder="Заголовок"
+                    value="<#if article??>${article.theme}</#if>">
+                <#if themeError??>
+                    <div class="invalid-feedback">
+                    ${themeError}
+                    </div>
+                </#if>
             </div>
             <div class="form-group col-md-5">
                 <input class="form-control" type="text" name="briefDescriptions" placeholder="Краткое описания">
@@ -50,7 +56,15 @@
 
         </div>
         <br/>
-        <textarea class="form-control" name="text" rows="15" placeholder="Напишите статью"></textarea>
+        <textarea class="form-control ${(textError??)?string('is-invalid', '')}"
+                    name="text" rows="15" placeholder="Напишите статью">
+                <#if article??>${article.text}</#if>
+        </textarea>
+        <#if textError??>
+        <div class="invalid-feedback">
+            ${textError}
+        </div>
+        </#if>
         <br/>
 
         <!-- Large modal -->
