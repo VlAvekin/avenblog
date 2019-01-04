@@ -10,7 +10,7 @@
                     </div>
                 </div>
                 <div class="form-group col-md-3">
-                    <button class="btn btn-primary" type="submit">Добавить</button>
+                    <button class="btn btn-primary" type="submit">Add</button>
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
 
             <#if file.filename??>
                 <div class="card my-3">
-                    <img class="card-img-top" src="/img/${file.filename}">
+                    <img class="card-img-top" src="/img/${file.filename}" />
                     <#--<div class="card-body">-->
                         <#--<h5 class="card-title">${file.filename}</h5>-->
                     <#--</div>-->

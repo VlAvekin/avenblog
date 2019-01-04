@@ -61,11 +61,11 @@ public class NewArticlesController {
 
         article.setAuthor(user);
 
-        if (bindingResult.hasErrors()){
-            Map<String, String> errorMap = ControllerUtils.getErrors(bindingResult);
-            model.mergeAttributes(errorMap);
-            model.addAttribute("article", article);
-        } else {
+//        if (bindingResult.hasErrors()){
+//            Map<String, String> errorMap = ControllerUtils.getErrors(bindingResult);
+//            model.mergeAttributes(errorMap);
+//            model.addAttribute("article", article);
+//        } else {
             if (photo != null && !photo.getOriginalFilename().isEmpty()) {
 
                 File uploadDir = new File(uploadPath);
@@ -85,7 +85,7 @@ public class NewArticlesController {
             model.addAttribute("article", null);
 
             articlesRepo.save(article);
-        }
+        //}
 
         Iterable<Articles> articles = articlesRepo.findAll();
 

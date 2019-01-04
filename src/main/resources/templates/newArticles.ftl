@@ -37,7 +37,7 @@
 
             <div class="form-group col-md-3">
                 <input class="form-control" type="text" name="theme" placeholder="Заголовок"
-                    value="<#if article??>${article.theme}</#if>">
+                    value="<#if article??>${article.theme}</#if>" />
                 <#if themeError??>
                     <div class="invalid-feedback">
                     ${themeError}
@@ -45,7 +45,7 @@
                 </#if>
             </div>
             <div class="form-group col-md-5">
-                <input class="form-control" type="text" name="briefDescriptions" placeholder="Краткое описания">
+                <input class="form-control" type="text" name="briefDescriptions" placeholder="Краткое описания" />
             </div>
             <div class="form-group col-md-3">
                 <div class="custom-file">
@@ -89,7 +89,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="container-fluid">
-                            ...
+                            ... TODO ...
                         </div>
                     </div>
                     <div class="modal-footer">
