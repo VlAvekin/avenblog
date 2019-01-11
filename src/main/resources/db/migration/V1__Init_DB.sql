@@ -4,7 +4,7 @@ create table articles (
   id int8 not null,
   brief_descriptions varchar(255) not null,
   photo varchar(255),
-  text varchar(2048) not null,
+  text varchar not null,
   theme varchar(255),
   user_id int8,
   primary key (id)

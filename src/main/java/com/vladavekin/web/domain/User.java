@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -34,6 +35,9 @@ public class User implements UserDetails{
     private String email;
     private String activationCode;
 
+//    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private Set<Articles> articles;
+
     public User() {
     }
 
@@ -42,6 +46,19 @@ public class User implements UserDetails{
         this.password = password;
         this.active = active;
         this.roles = roles;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     public boolean isAdmin() {
@@ -128,4 +145,12 @@ public class User implements UserDetails{
     public void setActivationCode(String activationCode) {
         this.activationCode = activationCode;
     }
+
+//    public Set<Articles> getArticles() {
+//        return articles;
+//    }
+//
+//    public void setArticles(Set<Articles> articles) {
+//        this.articles = articles;
+//    }
 }

@@ -20,9 +20,12 @@
                                 <p class="card-text text-left">${article.authorName}</p>
                             </div>
 
-                            <div class="col mb-6">
-                                <p class="card-text text-right">Last updated 3 mins ago</p>
-                            </div>
+
+                            <#--<div class="col mb-6">-->
+                                <a href="/newArticles/${article.author.id}?article=${article.id}">
+                                    <button type="button" class="btn btn-primary">Edit</button>
+                                </a>
+                            <#--</div>-->
                         </div>
                     </div>
                 </a>

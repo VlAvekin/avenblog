@@ -11,9 +11,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,6 +24,7 @@ import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -37,6 +40,9 @@ public class NewArticlesController {
     @Autowired
     private FilesRepo filesRepo;
 
+    @Autowired
+    private ArticlesRepo articlesRepo;
+
     @GetMapping("/newArticles")
     public String files(Model model){
 
@@ -47,9 +53,6 @@ public class NewArticlesController {
         return "newArticles";
     }
 
-
-    @Autowired
-    private ArticlesRepo articlesRepo;
 
     @PostMapping("/newArticles")
     public String add(
@@ -66,23 +69,9 @@ public class NewArticlesController {
 //            model.mergeAttributes(errorMap);
 //            model.addAttribute("article", article);
 //        } else {
-            if (photo != null && !photo.getOriginalFilename().isEmpty()) {
+        savePhoto(photo, article);
 
-                File uploadDir = new File(uploadPath);
-
-                if (!uploadDir.exists()) {
-                    uploadDir.mkdir();
-                }
-
-                final String uuidFile = UUID.randomUUID().toString();
-                final String resultFilename = uuidFile + "." + photo.getOriginalFilename();
-
-                photo.transferTo(new File(uploadPath + "/" + resultFilename));
-
-                article.setPhoto(resultFilename);
-            }
-
-            model.addAttribute("article", null);
+        model.addAttribute("article", null);
 
             articlesRepo.save(article);
         //}
@@ -93,6 +82,24 @@ public class NewArticlesController {
 
 //      editor.direct(text)
         return "newArticles";
+    }
+
+    private void savePhoto(@RequestParam("photo") MultipartFile photo, @Valid Articles article) throws IOException {
+        if (photo != null && !photo.getOriginalFilename().isEmpty()) {
+
+            File uploadDir = new File(uploadPath);
+
+            if (!uploadDir.exists()) {
+                uploadDir.mkdir();
+            }
+
+            final String uuidFile = UUID.randomUUID().toString();
+            final String resultFilename = uuidFile + "." + photo.getOriginalFilename();
+
+            photo.transferTo(new File(uploadPath + "/" + resultFilename));
+
+            article.setPhoto(resultFilename);
+        }
     }
 
     @PostMapping("/parts/file")
@@ -125,5 +132,44 @@ public class NewArticlesController {
         model.put("files", files);
 
         return "newArticles";
+    }
+
+    @GetMapping("/newArticles/{user}")
+    public String edit(
+            @RequestParam(required = false) Long article,
+            Model model) {
+
+        Articles articles = articlesRepo.findById(article);
+        Iterable<Files> files = filesRepo.findAll();
+
+        model.addAttribute("files", files);
+        model.addAttribute("article",   articles);
+
+        return "newArticles";
+    }
+
+    @PostMapping("/newArticles/{user}")
+    public String updateArticles(
+            @RequestParam Long article,
+            @RequestParam("theme") String theme,
+            @RequestParam("briefDescriptions") String briefDescriptions,
+            @RequestParam("text") String text,
+            @RequestParam("photo") MultipartFile photo
+    ) throws IOException {
+
+        Articles newArticle = articlesRepo.findById(article);
+
+        if (!StringUtils.isEmpty(theme))
+            newArticle.setTheme(theme);
+        if (!StringUtils.isEmpty(briefDescriptions))
+            newArticle.setBriefDescriptions(briefDescriptions);
+        if (!StringUtils.isEmpty(text))
+            newArticle.setText(text);
+
+        savePhoto(photo, newArticle);
+
+        articlesRepo.save(newArticle);
+
+        return "redirect:/articles/" + article;
     }
 }

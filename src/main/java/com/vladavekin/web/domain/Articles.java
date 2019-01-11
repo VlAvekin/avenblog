@@ -21,7 +21,6 @@ public class Articles {
     private String briefDescriptions;
 
     @NotBlank(message = "Please fill the Articles")
-    @Length(max = 2048, message = "Articles top long (more then 2kB)")
     private String text;
     private String photo;
 

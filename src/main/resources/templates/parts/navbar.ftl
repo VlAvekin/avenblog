@@ -17,6 +17,12 @@
                 <a class="nav-link" href="/blog">Blog <span class="sr-only">(current)</span></a>
             </li>
 
+            <#if isAdmin>
+                <li class="nav-item">
+                    <a class="nav-link" href="/newArticles">New Articles<span class="sr-only">(current)</span></a>
+                </li>
+            </#if>
+
             <#if user??>
             <li class="nav-item">
                 <a class="nav-link" href="/user/profile">Profile <span class="sr-only">(current)</span></a>
@@ -24,9 +30,6 @@
             </#if>
 
             <#if isAdmin>
-            <li class="nav-item">
-                <a class="nav-link" href="/newArticles">New Articles<span class="sr-only">(current)</span></a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link" href="/user">User List <span class="sr-only">(current)</span></a>
             </li>
