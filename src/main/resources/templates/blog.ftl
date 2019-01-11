@@ -1,6 +1,6 @@
 <#import "parts/common.ftl" as common>
 <#import "parts/login.ftl" as login>
-<#import "parts/search.ftl" as searchs>
+<#include "parts/security.ftl">
 
 <@common.page>
 
@@ -21,11 +21,11 @@
                             </div>
 
 
-                            <#--<div class="col mb-6">-->
+                            <#if article.author.id == currentUserId>
                                 <a href="/newArticles/${article.author.id}?article=${article.id}">
                                     <button type="button" class="btn btn-primary">Edit</button>
                                 </a>
-                            <#--</div>-->
+                            </#if>
                         </div>
                     </div>
                 </a>

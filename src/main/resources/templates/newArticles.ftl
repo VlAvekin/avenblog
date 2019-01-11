@@ -1,5 +1,5 @@
 <#import "parts/common.ftl" as common>
-
+<#import "parts/search.ftl" as searchs>
 <@common.page>
 
     <!-- Modal -->

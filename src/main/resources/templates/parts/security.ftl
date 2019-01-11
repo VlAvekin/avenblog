@@ -7,12 +7,12 @@
         user = Session.SPRING_SECURITY_CONTEXT.authentication.principal
         name = user.getUsername()
         isAdmin = user.isAdmin()
-        currendUserId = user.getId()
+        currentUserId = user.getId()
     >
 <#else>
     <#assign
         name = "unknown"
         isAdmin = false
-        currendUserId = -1
+        currentUserId = -1
     >
 </#if>
