@@ -13,9 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,11 +21,10 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 @Controller
 public class NewArticlesController {
@@ -64,6 +61,12 @@ public class NewArticlesController {
 
         article.setAuthor(user);
 
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss  dd-MM-yyyy");
+        String formatDateTime = now.format(formatter);
+
+        article.setCreationData(formatDateTime);
+
 //        if (bindingResult.hasErrors()){
 //            Map<String, String> errorMap = ControllerUtils.getErrors(bindingResult);
 //            model.mergeAttributes(errorMap);
@@ -73,7 +76,7 @@ public class NewArticlesController {
 
         model.addAttribute("article", null);
 
-            articlesRepo.save(article);
+        articlesRepo.save(article);
         //}
 
         Iterable<Articles> articles = articlesRepo.findAll();
@@ -84,7 +87,8 @@ public class NewArticlesController {
         return "newArticles";
     }
 
-    private void savePhoto(@RequestParam("photo") MultipartFile photo, @Valid Articles article) throws IOException {
+    private void savePhoto(@RequestParam("photo") MultipartFile photo,
+                           @Valid Articles article) throws IOException {
         if (photo != null && !photo.getOriginalFilename().isEmpty()) {
 
             File uploadDir = new File(uploadPath);
@@ -131,7 +135,7 @@ public class NewArticlesController {
 
         model.put("files", files);
 
-        return "newArticles";
+        return "redirect:/newArticles";
     }
 
     @GetMapping("/newArticles/{user}")
@@ -139,7 +143,8 @@ public class NewArticlesController {
             @RequestParam(required = false) Long article,
             Model model) {
 
-        Articles articles = articlesRepo.findById(article);
+        Articles articles = articlesRepo.findById(article).get();
+
         Iterable<Files> files = filesRepo.findAll();
 
         model.addAttribute("files", files);
@@ -157,7 +162,7 @@ public class NewArticlesController {
             @RequestParam("photo") MultipartFile photo
     ) throws IOException {
 
-        Articles newArticle = articlesRepo.findById(article);
+        Articles newArticle = articlesRepo.findById(article).get();
 
         if (!StringUtils.isEmpty(theme))
             newArticle.setTheme(theme);

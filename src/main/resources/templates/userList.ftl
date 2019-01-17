@@ -2,21 +2,21 @@
 
 <@common.page>
 
-    List of users
+    <h3>List of users</h3>
 
-    <table>
-
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Role</th>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Role</th>
+                <th scope="col"></th>
             </tr>
         </thead>
             <tbody>
             <#list users as user>
                 <tr>
-                    <td>${user.id}</td>
+                    <td scope="row">${user.id}</td>
                     <td>${user.username}</td>
                     <td><#list user.roles as role>
                         ${role}<#sep>, </#list>

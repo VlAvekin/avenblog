@@ -20,6 +20,7 @@
 
     <div class="container mt-5">
         <#nested>
+    <#--<#include "footer.ftl">-->
     </div>
 
 <script src='https://www.google.com/recaptcha/api.js'></script>

@@ -35,9 +35,6 @@ public class User implements UserDetails{
     private String email;
     private String activationCode;
 
-//    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private Set<Articles> articles;
-
     public User() {
     }
 
@@ -146,11 +143,4 @@ public class User implements UserDetails{
         this.activationCode = activationCode;
     }
 
-//    public Set<Articles> getArticles() {
-//        return articles;
-//    }
-//
-//    public void setArticles(Set<Articles> articles) {
-//        this.articles = articles;
-//    }
 }

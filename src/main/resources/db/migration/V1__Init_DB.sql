@@ -7,6 +7,8 @@ create table articles (
   text varchar not null,
   theme varchar(255),
   user_id int8,
+  creation_data varchar(255),
+  comment_list bytea,
   primary key (id)
 );
 
@@ -32,10 +34,22 @@ create table usr (
   primary key (id)
 );
 
+create table сomments (
+  id int8 not null,
+  creation_data varchar(255),
+  text varchar not null,
+  user_id int8,
+  primary key (id)
+);
+
 alter table if exists articles
   add constraint articles_user_fk
   foreign key (user_id) references usr;
 
 alter table if exists user_role
   add constraint user_role_user_fk
+  foreign key (user_id) references usr;
+
+alter table if exists сomments
+  add constraint сomments_user_fk
   foreign key (user_id) references usr;

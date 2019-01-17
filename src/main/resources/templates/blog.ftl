@@ -15,17 +15,22 @@
                         <p class="card-text">${article.briefDescriptions}</p>
                     </div>
                     <div class="card-footer text-muted">
-                        <div class="form-row">
-                            <div class="col mb-6">
+                        <div class="row">
+                            <div class="col">
                                 <p class="card-text text-left">${article.authorName}</p>
                             </div>
 
-
                             <#if article.author.id == currentUserId>
-                                <a href="/newArticles/${article.author.id}?article=${article.id}">
+                                <div class="col" style="text-align: right;">
+                                    <a href="/newArticles/${article.author.id}?article=${article.id}">
                                     <button type="button" class="btn btn-primary">Edit</button>
-                                </a>
+                                    </a>
+                                </div>
                             </#if>
+
+                            <div class="col" >
+                                <p class="card-text text-right">${article.creationData}</p>
+                            </div>
                         </div>
                     </div>
                 </a>
@@ -39,5 +44,4 @@
 
         </div>
     </div>
-    <#include "parts/footer.ftl">
 </@common.page>

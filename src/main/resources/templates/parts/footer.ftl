@@ -1,18 +1,13 @@
 <style>
     .footer {
-        background: #F8F9FA;
-        position: absolute;
+        position: fixed;
         left: 0;
         bottom: 0;
         width: 100%;
-        height: 60px;
+        text-align: center;
     }
 </style>
 
 <div class="footer">
-    <div class="container">
-
-        <div class="footer-copyright text-center py-3">© 2018 : Vlad Avekin
-        </div>
-    </div>
+    <p>© 2019 Vlad Aviekin</p>
 </div>

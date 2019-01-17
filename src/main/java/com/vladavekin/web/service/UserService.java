@@ -35,7 +35,7 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepo.findByUsername(username);
 
-        if (user == null){
+        if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
 
@@ -77,10 +77,9 @@ public class UserService implements UserDetailsService {
     }
 
     public boolean activateUser(String code) {
-
         User user = userRepo.findByActivationCode(code);
 
-        if (user == null){
+        if (user == null) {
             return false;
         }
 
@@ -92,7 +91,6 @@ public class UserService implements UserDetailsService {
     }
 
     public List<User> findAll() {
-
         return userRepo.findAll();
     }
 

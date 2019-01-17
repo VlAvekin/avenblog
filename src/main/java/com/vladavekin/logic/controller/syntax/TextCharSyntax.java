@@ -1,12 +1,7 @@
 package com.vladavekin.logic.controller.syntax;
 
-import com.vladavekin.logic.controller.Parser;
-import com.vladavekin.logic.controller.syntax.TextItalicSyntax;
-import com.vladavekin.logic.controller.syntax.TextThumbnailSyntax;
-import com.vladavekin.logic.controller.syntax.TextUnderlinedSyntax;
 import com.vladavekin.logic.model.MyMap;
 import com.vladavekin.logic.model.TransforAvenTextAtHTML;
-import com.vladavekin.logic.view.Print;
 
 import java.util.ArrayList;
 import java.util.List;

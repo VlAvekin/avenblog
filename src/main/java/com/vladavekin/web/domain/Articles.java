@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
 
 @Entity
 public class Articles {
@@ -28,17 +29,30 @@ public class Articles {
     @JoinColumn(name = "user_id")
     private User author;
 
-
+    private String creationData;
+    private ArrayList<Long> commentList;
 
     public Articles() {
     }
 
 
-    public Articles(String theme, String briefDescriptions, String text, User author) {
+    public Articles(@NotBlank(message = "Please fill the Theme")
+                    @Length(max = 255, message = "Theme top long (more then 255 chat)")
+                            String theme,
+                    @NotBlank(message = "Please fill the Brief Descriptions")
+                    @Length(max = 255, message = "Brief Descriptions top long (more then 255 chat)")
+                            String briefDescriptions,
+                    @NotBlank(message = "Please fill the Articles")
+                            String text,
+                    String photo,
+                    User author,
+                    String creationData) {
         this.theme = theme;
         this.briefDescriptions = briefDescriptions;
         this.text = text;
+        this.photo = photo;
         this.author = author;
+        this.creationData = creationData;
     }
 
     public String getPhoto() {
@@ -91,5 +105,21 @@ public class Articles {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getCreationData() {
+        return creationData;
+    }
+
+    public void setCreationData(String creationData) {
+        this.creationData = creationData;
+    }
+
+    public ArrayList<Long> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(ArrayList<Long> commentList) {
+        this.commentList = commentList;
     }
 }
