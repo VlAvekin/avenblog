@@ -60,9 +60,7 @@
     </div>
     <br/>
     <textarea class="form-control ${(textError??)?string('is-invalid', '')}"
-    name="text" rows="15" placeholder="Напишите статью">
-    <#if article??>${article.text}</#if>
-    </textarea>
+    name="text" rows="15" placeholder="Напишите статью"><#if article??>${article.text}</#if></textarea>
     <#if textError??>
         <div class="invalid-feedback">
         ${textError}

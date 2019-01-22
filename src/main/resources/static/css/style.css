@@ -1,0 +1,50 @@
+
+.main{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: inline-flex;
+}
+
+input {
+    background: white;
+}
+
+.editor{
+    width: 100%;
+    height: 100%;
+
+}
+
+#editor-counter{
+    width: 6%;
+    height: 92%;
+    text-align: center;
+    box-sizing: border-box;
+    font-size: 16px;
+    resize: none; /* Запрещаем изменять размер */
+    overflow: hidden;
+}
+
+#editor-textarea{
+    background: white;
+    box-sizing: border-box;
+    font-size: 16px;
+    width: 92%;
+    height: 92%;
+    resize: none; /* Запрещаем изменять размер */
+    white-space: nowrap;
+}
+
+.viewer{
+    width: 100%;
+    height: 100%;
+}
+
+#result{
+    font-size: 16px;
+    white-space: pre-wrap;
+    width: 100%;
+    height: 100%;
+
+}

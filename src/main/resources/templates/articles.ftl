@@ -2,6 +2,7 @@
 <#include "parts/security.ftl">
 
 <@common.page>
+<link rel="stylesheet" href="/static/css/style.css">
     <div class="form-row">
         <div class="form-group col-md-8">
             <div>
@@ -24,7 +25,9 @@
                     </div>
                  </div>
                 <hr>
-                ${articles.text}
+                <div class="col">
+                    <pre id="result">${articles.text}</pre>
+                </div>
             </div>
             <br>
             <hr>
@@ -85,5 +88,5 @@
 
         </div>
     </div>
-
+<script type="text/javascript" src="/static/js/script.js"></script>
 </@common.page>
