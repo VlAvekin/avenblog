@@ -18,10 +18,10 @@
 
     <#include "navbar.ftl">
 
-    <div class="container mt-5">
+    <#--<div class="container mt-5">-->
         <#nested>
     <#--<#include "footer.ftl">-->
-    </div>
+    <#--</div>-->
 
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <!-- Optional JavaScript -->

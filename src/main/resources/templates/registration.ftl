@@ -2,10 +2,11 @@
 <#import "parts/login.ftl" as login>
 
 <@common.page>
-Add new user
+<div class="container mt-5">
+    Add new user
 
-${articles?ifExists}
+    ${articles?ifExists}
 
-<@login.login "/registration" true/>
-
+    <@login.login "/registration" true/>
+</div>
 </@common.page>

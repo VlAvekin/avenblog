@@ -1,7 +1,7 @@
 <#import "parts/common.ftl" as common>
 
 <@common.page>
-
+<div class="container mt-5">
     <h5>${username}</h5>
     ${articles?ifExists}
 
@@ -30,6 +30,6 @@
             </div>
 
         </form>
-
+</div>
     <#include "parts/footer.ftl">
 </@common.page>

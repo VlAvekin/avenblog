@@ -61,11 +61,7 @@ public class NewArticlesController {
 
         article.setAuthor(user);
 
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss  dd-MM-yyyy");
-        String formatDateTime = now.format(formatter);
-
-        article.setCreationData(formatDateTime);
+        article.setCreationData(new MyData().data());
 
 //        if (bindingResult.hasErrors()){
 //            Map<String, String> errorMap = ControllerUtils.getErrors(bindingResult);

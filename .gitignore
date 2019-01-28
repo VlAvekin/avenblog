@@ -7,4 +7,5 @@
 *.iml
 *.ipr
 *.xml
+vcs.xml
 /out/

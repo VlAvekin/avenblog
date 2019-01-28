@@ -15,9 +15,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Set;
 
 @Controller
@@ -51,13 +55,10 @@ public class ArticlesController {
             @RequestParam("textComment") String textComment,
             Model model) {
 
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss  dd-MM-yyyy");
-        String formatDateTime = now.format(formatter);
 
         Сomments newComment = new Сomments(textComment,
-                                            formatDateTime,
-                                            user);
+                                   new MyData().data(),
+                                                  user);
 
         if (!StringUtils.isEmpty(textComment))
             newComment.setText(textComment);

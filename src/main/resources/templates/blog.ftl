@@ -1,12 +1,15 @@
 <#import "parts/common.ftl" as common>
 <#import "parts/login.ftl" as login>
 <#include "parts/security.ftl">
+<#import "parts/pager.ftl" as p>
 
 <@common.page>
-
+<div class="container mt-5">
     <div class="form-row">
         <div class="form-group col-md-8" id="article-list">
-            <#list articles as article>
+            <@p.pagerCol url page/>
+            <@p.pager url page/>
+            <#list page.content as article>
             <div class="card mb-3 text-center" >
                 <a href="/articles/${article.id}">
                     <img class="card-img-top" src="/img/${article.photo}" alt="Card image cap"/>
@@ -38,10 +41,13 @@
             <#else>
                 No Articles
             </#list>
+            <@p.pager url page/>
         </div>
 
         <div class="form-group col-md-4">
 
         </div>
     </div>
+</div>
+<#--<@p.pager url page/>-->
 </@common.page>

@@ -3,6 +3,7 @@
 
 <@common.page>
 <link rel="stylesheet" href="/static/css/style.css">
+<div class="container mt-5">
     <div class="form-row">
         <div class="form-group col-md-8">
             <div>
@@ -28,8 +29,18 @@
                 <div class="col">
                     <pre id="result">${articles.text}</pre>
                 </div>
+
             </div>
             <br>
+            <#--<div class="row">-->
+                <#--<div class="col">-->
+                    <#--<a class="btn btn-primary" href="/articles/${articles.id - 1}" role="button">Previous</a>-->
+                <#--</div>-->
+
+                <#--<div class="col text-right">-->
+                    <#--<a class="btn btn-primary" href="/articles/${articles.id + 1}" role="button">Next</a>-->
+                <#--</div>-->
+            <#--</div>-->
             <hr>
             <div>
                 <#if user??>
@@ -45,12 +56,12 @@
                 </#if>
                 <br>
                     <#list comments![] as comment>
-                        <div style="
-                            padding: 5px;
-                            margin-right: 0;
-                            margin-left: 0;
-                            border: 1px solid #E5E6E7;
-                            border-radius: 5px;">
+                    <div style="
+                        padding: 5px;
+                        margin-right: 0;
+                        margin-left: 0;
+                        border: 1px solid #E5E6E7;
+                        border-radius: 5px;">
                         <div class="toast fade show" role="alert" aria-live="assertive" aria-atomic="true">
                         <div class="toast-header">
                             <div class="row">
@@ -75,18 +86,19 @@
                                 </#if>
                             </div>
                         </div>
-                        <div class="toast-body">
-                        ${comment.text}
+                            <div class="toast-body">
+                            ${comment.text}
+                            </div>
                         </div>
-                        </div>
-                        </div>
-                        <br>
+                    </div>
+                    <br>
                     </#list>
-                <div>
+             </div>
         </div>
         <div class="form-group col-md-4">
 
         </div>
     </div>
+</div>
 <script type="text/javascript" src="/static/js/script.js"></script>
 </@common.page>

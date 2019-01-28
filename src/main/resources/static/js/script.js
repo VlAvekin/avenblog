@@ -1,14 +1,26 @@
 
 // TODO to remake
 
-function counter(){
+function counter(val) {
+    document.getElementById('editor-textarea').style.height = "1px";
+    var size =document.getElementById('editor-textarea').scrollHeight;
+    if (size >= val*25) {
+        document.getElementById('editor-textarea').style.height = (25+size)+"px";
+    } else{
+        document.getElementById('editor-textarea').style.height = val*25 + "px";
+    }
+
     var text = document.getElementById('editor-textarea').value;
-    document.getElementById('result').innerHTML = edit(text + '\n');
+    document.getElementById('editor-result').innerHTML = edit(text  + "\n");
+
 }
 
 window.onload = function() {
     var text = document.getElementById('result').innerHTML;
-    document.getElementById('result').innerHTML = edit(text);
+    document.getElementById('result').innerHTML = edit(text + "\n");
+
+    var text1 = document.getElementById('editor-textarea').value;
+    document.getElementById('editor-result').innerHTML = edit(text1 + "\n");
 };
 
 function edit(text) {
